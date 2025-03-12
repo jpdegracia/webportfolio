@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Capstone Project</title>
+  <link rel="stylesheet" type="text/css" href="./index.css">
 
   <!-- bootstrap link -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -12,6 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
 
   <!-- icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -24,104 +26,132 @@
 
   <!-- navbar section start -->
 
-    <nav class="container-fluid navbar navbar-light bg-primary text-light">
+    <nav id="navbar" class="container-fluid navbar-dark ">
       <div id="navbar" class="container-fluid justify-content-center p-1">
-        <a id="landing" class="navbar-brand" href="#navbar">Home</a>
-        <a id="landing" class="navbar-brand" href="#projects">Projects</a>
-        <a id="landing" class="navbar-brand" href="#about">Jenskid</a>
-        <a id="landing" class="navbar-brand" href="#tools">Tools</a>
-        <a id="landing" class="navbar-brand" href="#contact">Contact</a>
+        <a id="landing" class="navbar-brand m-3" href="#navbar">Home</a>
+        <a id="landing" class="navbar-brand m-3" href="#projects">Projects</a>
+        <a id="landing" class="navbar-brand m-3" href="#">Jenskid</a>
+        <a id="landing" class="navbar-brand m-3" href="#tools">Tools</a>
+        <a id="landing" class="navbar-brand m-3" href="#contact">Contact</a>
       </div>
-  </nav>
+    </nav>
 
   <!-- navbar section ends -->
 
-  <!-- about me start -->
+ 
+    <div id="about" class="container-fluid py-5" >
+    <div class="row py-5 mx-3 justify-content-center ms-auto">
+            
+            <!-- Profile Image -->
+            <div class="col-md-3 my-5">
+                <img src="./images/kid.jpg" width="300" class="img-fluid rounded-circle shadow-lg">
+            </div>
 
-  <div class="container-fluid py-md-5 bg-dark text-white" id="about">
-    <div class="row justify-content-center py-md-3 my-md-3 gap-3">
-      <div class="col-md-3 my-5">
-        <img src="./images/kid.jpg" width="700" class="img-fluid rounded-circle">
-      </div>
-      <div class="col-md-7">
-        <h1 id="text-title" class="mt-md-5 pt-md-3">Jenskid P. de Gracia</h1>
-        <h2 id="text-title" class="mt-md-3 pt-md-3">Full Stack Web Developer</h2>
-        <p>Creative and results-driven full-stack developer who enjoys collaborating to bring ideas to life.  I believe in writing clean, maintainable code and creating positive user experiences.  Excited to contribute to projects that make a difference.</p>
-        <p>A full-stack web developer passionate about building user-friendly and efficient applications and who's always eager to learn new technologies and contribute to innovative projects</p>
-      </div>
+            <!-- About Me Text -->
+            <div class="col-md-7">
+                <h1 id="text" class="mt-md-5 pt-md-3">Jenskid P. de Gracia</h1>
+                <h2 id="text-title2" class="mt-md-3 pt-md-3">Full Stack Web Developer</h2>
+                <p id="text-title3" class="typewriter mt-4">
+                    Creative and results-driven full-stack developer who enjoys collaborating to bring ideas to life. 
+                    I believe in writing clean, maintainable code and creating positive user experiences. Excited to 
+                    contribute to projects that make a difference.
+                </p>
+                <p id="text-title3" class="typewriter typewriter2 mt-4">
+                    Passionate in building user-friendly and efficient applications, always eager to learn new 
+                    technologies and contribute to innovative projects.
+                </p>
+            </div>
+
+        </div>
     </div>
-  </div>
 
 
 <!-- Projects Start -->
-  <div class="container-fluid">
-    <h2 class="row justify-content-center py-md-3 my-md-4 gap-3 mx-auto text-primary">Other Projects</h2>
-  </div>
-      <div id="projects" class="container-fluid row other-projects bg-info">
-        <!-- HTML Card Start -->
-        <div class="col-12 col-md-4 card">
-          <img
-            src="https://3.bp.blogspot.com/-7x5c_f1yzsQ/XHv9FZKHrEI/AAAAAAAADrE/4iGl9Lm6K2odX4SdWbU_RN6gZesx4IaGACEwYBhgL/s1600/html.jpg" alt="HTML" class="img-fluid"/>
-          <h5>HTML</h5>
-          <p>
-            This project is a personal portfolio website built with HTML and CSS. It showcases the developer's skills, projects, and experience in a visually appealing and responsive manner. It includes:
-            <ul>
-              <li><strong>About Me section:</strong> A brief introduction and summary of the developer's skills and experience.</li>
-              <li><strong>Portfolio section:</strong> A showcase of the developer's projects, with images, descriptions, and links to live demos or code repositories.</li>
-              <li><strong>Contact section:</strong> A form or contact information for potential clients or employers to get in touch.</li>
-              <li><strong>Responsive design:</strong> The website adapts to different screen sizes and devices (desktops, tablets, phones).</li>
-            </ul>
-          </p>
-        </div>
-        <!-- HTML Card End -->
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
 
-        <!-- Bootstrap Card Start -->
-        <div class="col-12 col-md-4 card">
-          <img
-            src="https://www.10bestdesign.com/blog/content/images/2018/03/14.png" alt="Bootstrap" class="img-fluid">
-          <h5>Bootstrap</h5>
-          <p>
-            This project creates a visually appealing product card using Bootstrap's card component. It showcases a product with an image, title, description, price, and an "Add to Cart" button.
-            <ul>
-              <li><strong>Card layout:</strong> Uses Bootstrap's grid system to structure the card layout, with an image on one side and product details on the other.</li>
-              <li><strong>Image:</strong> Includes a high-quality product image that is responsive and fits nicely within the card.</li>
-              <li><strong>Product details:</strong> Displays the product name, a brief description, and the price.</li>
-              <li><strong>Add to Cart button:</strong> Includes a functional "Add to Cart" button that could be linked to a shopping cart functionality (if implemented).</li>
-            </ul>
-          </p>
-        </div>
-        <!-- Bootstrap Card End -->
-
-        <!-- Node JS Server Card Start -->
-        <div class="col-12 col-md-4 card">
-          <img
-            src="https://kinsta.com/wp-content/uploads/2021/05/what-is-node-js-featured-image.jpg" alt="Node JS Server" class="img-fluid">
-          <h5>Node JS Server</h5>
-          <p>
-            This project implements a real-time chat application using Node.js and Socket.IO. Users can join chat rooms, exchange messages, and see updates instantly.
-            <ul>
-              <li><strong>Server-side logic:</strong> Node.js and Express.js handle user authentication, room creation, and message broadcasting.</li>
-              <li><strong>Real-time communication:</strong> Socket.IO enables bi-directional, real-time communication between clients and the server.</li>
-              <li><strong>User interface:</strong> A front-end framework (like React, Vue, or Angular) provides a user-friendly interface for chatting.</li>
-              <li><strong>Database integration:</strong> A database (like MongoDB) stores user information and chat history.</li>
-            </ul>
-          </p>
-        </div>
-        <!-- Node JS Server Card End -->
-      </div> 
+    <div class="container-fluid">
+        <h2 class="tools section-title justify-content-center py-md-3 my-md-4 text-center "><span class="title-text">Projects 🖥️</span></h2>
     </div>
+
+<div id="projects" class="container-fluid row justify-content-center bg-light p-4">
+
+    <!-- E-Commerce API Website -->
+    <div class="col-12 col-md-4">
+        <div class="card shadow-lg animate-card">
+            <div class="img-container">
+                <img src="./images/project-1.png"
+                    alt="E-Commerce API" class="card-img-top">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">E-Commerce API Website</h5>
+                <p class="card-text">
+                    A <strong>feature-rich online shopping platform</strong> with secure payments, user authentication, and product management. 
+                    Built with Node.js, Express, MongoDB, and React ensuring a seamless experience.  
+                </p>
+                <a href="http://zuitt-bootcamp-prod-529-8539-degracia.s3-website.us-east-1.amazonaws.com/" class="btn btn-primary">View Project</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gunpla E-Commerce Store -->
+    <div class="col-12 col-md-4">
+        <div class="card shadow-lg animate-card">
+            <div class="img-container">
+                <img src="./images/project-2.png"
+                    alt="Gunpla Store" class="card-img-top">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Gunpla E-Commerce Store</h5>
+                <p class="card-text">
+                    A sleek and modern <strong>Gunpla store</strong> with Bootstrap-based UI, product catalog, and an "Add to Cart" feature.  
+                    Optimized a good example of layout for shopping.
+                </p>
+                <a href="https://jpdegracia.github.io/home-page-exam/" class="btn btn-primary">View Project</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Education E-Commerce Website -->
+    <div class="col-12 col-md-4">
+        <div class="card shadow-lg animate-card">
+            <div class="img-container">
+                <img src="./images/project-3.png"
+                    alt="Education E-Commerce" class="card-img-top">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">E-Learning E-Commerce Platform</h5>
+                <p class="card-text">
+                    Unlock your potential with expert-led online courses. Our platform offers interactive content, smooth navigation, and secure payments for students & professionals alike.
+                </p>
+                <a href="https://jpdegracia.github.io/home-page-exam-2/" class="btn btn-primary">View Project</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>
+
 
 <!-- Other Projects End -->
 
 <!-- Tools Start -->
 
-  <div id="tools" class="container-fluid">
-    <h2 class="row justify-content-center py-md-3 my-md-2 gap-4 text-primary">Tools Section</h2>
-  </div>
 
   <div class="container-fluid">
     <div id="web" class="row">
-    <h2 class="row justify-content-center py-md-4 gap-4 mx-1 text-danger bg-info">Tools</h2>
+        <h2 class="tools row justify-content-center py-md-3 my-md-2 gap-4 text-center"><span class="title-text">TOOLS 🛠</span></h2>
         <div class="col-12 col-md-4 card justify-content-center text-center bg-success">
           <h5>Front-End</h5>
             <div id="logo1">
@@ -154,53 +184,58 @@
 
 <!-- Tools End -->
 
-<!-- Contact Section Start -->
-
-  <div id="contact" class="container-fluid">
-        <h2 class="text-center py-md-3 my-md-1 gap-3 text-primary">Contact Section</h2>
-    </div>
-
-        <div class="row">
-            <div class="text-center col-12 py-md-3 my-md-2 gap-3 text-dark text-center bg-warning">
-                <h3 class="text-center mb-3">Contact:</h3>
-                <div class="social-icons col-12 justify-content-center">
-                    <a href="http://facebook.com" target="_blank"><i class="fab fa-facebook m-2 text-dark"></i></a>
-                    <a href="http://linkedin.com" target="_blank"><i class="fab fa-linkedin m-2 text-dark"></i></a>
-                    <a href="http://github.com" target="_blank"><i class="fab fa-github m-2 text-dark"></i></a>
-                    <a href="http://gitlab.com" target="_blank"><i class="fab fa-gitlab m-2 text-dark"></i></a>
-                </div>
-        </div>    
-      </div>     
-   
-
-
-    <div class="container d-flex d-grid justify-content-center py-md-5 my-md-5 gap-5">
-      
-        <div class="row col-md-6 order-md-1 order-2 text-center bg-dark">
-          <h3 class="row-md-6 text-center text-white ">Visit Us:</h3>
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125641.23069195346!2d123.64408032182074!3d10.23830317326538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a9784dc23f97a3%3A0x6e1d801f07e82f31!2sCity%20of%20Naga%2C%20Cebu!5e0!3m2!1sen!2sph!4v1737884795343!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<section id="contact" class="container py-5">
+    <div class="row justify-content-center align-items-center g-5">
+        
+        <!-- Visit Us Section -->
+        <div class="col-md-6 text-center order-md-1 order-2">
+            <h3 class="text-dark mb-3">Visit Us:</h3>
+            <div class="rounded shadow overflow-hidden">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125641.23069195346!2d123.64408032182074!3d10.23830317326538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a9784dc23f97a3%3A0x6e1d801f07e82f31!2sCity%20of%20Naga%2C%20Cebu!5e0!3m2!1sen!2sph!4v1737884795343!5m2!1sen!2sph" 
+                    width="100%" height="350" style="border:0;" 
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
         </div>
 
-         <div class="row col-md-6 order-md-2 order-1 bg-warning">
-                <h3 class="row col-md-6 text-center">Message Us:</h3>
-                <form>
-                    <div class="mb-3">
-                        <label for="fullName" class="form-label">Full Name</label>
-                        <input type="text" class="form-control" id="fullName" placeholder="Enter your full name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email Address</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email address">
-                    </div>
-                    <div class="mb-3">
-                        <label for="message" class="form-label">Message</label>
-                        <textarea class="form-control" id="message" rows="5" placeholder="Enter your message"></textarea>
-                    </div>
-                    <button id="button" type="submit" class="btn btn-primary">Submit</button>
-                </form>
+        <!-- Message Us Section -->
+        <div class="col-md-6 order-md-2 order-1">
+            <h3 class="text-center mb-3">Message Us:</h3>
+            <div class="text-center mb-4">
+                <a href="http://facebook.com" target="_blank"><i class="fab fa-facebook fa-2x mx-2 text-dark"></i></a>
+                <a href="http://linkedin.com" target="_blank"><i class="fab fa-linkedin fa-2x mx-2 text-dark"></i></a>
+                <a href="http://github.com" target="_blank"><i class="fab fa-github fa-2x mx-2 text-dark"></i></a>
+                <a href="http://gitlab.com" target="_blank"><i class="fab fa-gitlab fa-2x mx-2 text-dark"></i></a>
             </div>
+            <form class="p-4 bg-light rounded shadow">
+                <div class="mb-3">
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="fullName" placeholder="Enter your full name">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email address">
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" rows="4" placeholder="Enter your message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </form>
+        </div>
+        
     </div>
+</section>
 
+
+        <!-- Footer: Start -->
+    <footer class="bg-dark text-light text-center py-3">
+      <div id="footer" class="container">
+        <p class="mb-0">Kiddo&copy;  2025 | All rights reserved.</p>
+      </div>
+    </footer>
+    <!-- Footer: End -->
  
   
   <!-- bootstrap script -->
