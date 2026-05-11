@@ -1,228 +1,349 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Capstone Project</title>
-  <link rel="stylesheet" type="text/css" href="./index.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jenskid | Full Stack Architect</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-  <!-- bootstrap link -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Intersection Observer for Section Animation
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                        const sectionId = entry.target.id;
+                        entry.target.classList.add('animated');
 
+                        // Anime.js: Staggered Slide Up for items inside section
+                        anime({
+                            targets: `#${sectionId} .pop-item`,
+                            translateY: [60, 0],
+                            opacity: [0, 1],
+                            scale: [0.9, 1],
+                            delay: anime.stagger(100, {start: 200}),
+                            duration: 1000,
+                            easing: 'easeOutElastic(1, .8)'
+                        });
+                        
+                        // Simple fade for the section heading/title
+                        anime({
+                            targets: `#${sectionId} h2`,
+                            translateY: [30, 0],
+                            opacity: [0, 1],
+                            duration: 800,
+                            easing: 'easeOutExpo'
+                        });
+                    }
+                });
+            }, { threshold: 0.15 });
 
-  <!-- icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+            // Observe all sections
+            document.querySelectorAll('section').forEach(section => {
+                sectionObserver.observe(section);
+            });
 
+            // --- Navbar Underline Logic ---
+            const navLinks = document.querySelectorAll('.nav-item-link');
+            const underline = document.getElementById('nav-underline');
+            const sections = document.querySelectorAll('section, header');
 
+            function updateUnderline(element) {
+                if(!element || !underline) return;
+                underline.style.width = `${element.offsetWidth}px`;
+                underline.style.left = `${element.offsetLeft}px`;
+            }
+
+            window.addEventListener('scroll', () => {
+                let current = "";
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-cyan-400');
+                    link.classList.add('text-slate-400');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('text-cyan-400');
+                        link.classList.remove('text-slate-400');
+                        updateUnderline(link);
+                    }
+                });
+            });
+
+            window.onload = () => updateUnderline(document.querySelector('.nav-item-link'));
+        });
+    </script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cloudflare: '#f38020',
+                        aws: '#ff9900',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 
+<body class="bg-[#0f172a] text-slate-200 selection:bg-cyan-500/30 font-mono">
 
-<body>
-
-  <!-- navbar section start -->
-
-    <nav id="navbar" class="container-fluid navbar-dark ">
-      <div id="navbar" class="container-fluid justify-content-center p-1">
-        <a id="landing" class="navbar-brand m-3" href="#navbar">Home</a>
-        <a id="landing" class="navbar-brand m-3" href="#projects">Projects</a>
-        <a id="landing" class="navbar-brand m-3" href="#">Jenskid</a>
-        <a id="landing" class="navbar-brand m-3" href="#tools">Tools</a>
-        <a id="landing" class="navbar-brand m-3" href="#contact">Contact</a>
-      </div>
+    <nav id="navbar" class="navbar navbar-expand fixed-top px-4 h-20 transition-all duration-300">
+        <div class="container justify-content-center">
+            <div class="navbar-nav flex items-center gap-6 md:gap-12 relative">
+                <a class="nav-link nav-item-link text-[14px] tracking-[0.2em] font-bold uppercase" href="#about">home</a>
+                <a class="nav-link nav-item-link text-[14px] tracking-[0.2em] font-bold uppercase" href="#projects">projects</a>
+                <a class="nav-link nav-item-link text-[14px] tracking-[0.2em] font-bold uppercase" href="#tools">stack</a>
+                <a class="nav-link nav-item-link text-[14px] tracking-[0.2em] font-bold uppercase" href="#contact">contact</a>
+                <div id="nav-underline"></div>
+            </div>
+        </div>
     </nav>
 
-  <!-- navbar section ends -->
+    <header id="about" class="min-h-screen flex items-center pt-20 section">
+        <div class="container mx-auto px-6">
+            <div class="row align-items-center">
+                <div class="col-lg-7 reveal">
+                    <h6 class="text-cyan-400 font-bold tracking-[0.4em] mb-4 text-[14px] uppercase">system.init()</h6>
+                    <h1 class="text-5xl md:text-6xl font-black leading-[0.9] mb-6 font-syne text-white uppercase">
+                        JENSKID <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">DE GRACIA</span>
+                    </h1>
+                    <div id="text-title2" class="mb-8 font-mono">// Full_Stack_Developer_</div>
+                    
+                    <p class="text-slate-400 text-base md:text-lg max-w-xl mb-10 leading-relaxed font-mono">
+                        I architect high-performance backends with <span class="text-white font-semibold">Node.js/Express</span>, 
+                        secured via <span class="text-cloudflare font-semibold">Cloudflare Proxy</span> and scaled on 
+                        <span class="text-aws font-semibold">AWS Infrastructure</span>.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projects" class="bg-cyan-400 text-slate-900 px-10 py-3 font-bold uppercase text-[14px] tracking-widest hover:bg-white transition-all transform hover:-translate-y-1 shadow-lg shadow-cyan-500/20">View Work</a>
+                        <a href="#contact" class="border border-slate-700 text-white px-10 py-3 font-bold uppercase text-[14px] tracking-widest hover:bg-slate-800 transition-all">Connect</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 text-center reveal delay-1 mt-12 lg:mt-0">
+                    <div class="relative inline-block group">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                        <img src="./images/kid.jpg" class="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-2 border-white/10 hover:grayscale-0 transition-all duration-700 shadow-2xl" alt="Profile">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
- 
-    <div id="about" class="container-fluid py-5" >
-    <div class="row py-5 mx-3 justify-content-center ms-auto">
+    <section id="projects" class="py-32 bg-[#0a101f] section overflow-hidden">
+        <div class="container mx-auto px-6">
+            <h2 class="text-center font-black text-4xl mb-20 font-syne uppercase text-white italic tracking-tighter">Featured_Projects</h2>
             
-            <!-- Profile Image -->
-            <div class="col-md-3 my-5">
-                <img src="./images/kid.jpg" width="300" class="img-fluid rounded-circle shadow-lg">
-            </div>
-
-            <!-- About Me Text -->
-            <div class="col-md-7">
-                <h1 id="text" class="mt-md-5 pt-md-3">Jenskid P. de Gracia</h1>
-                <h2 id="text-title2" class="mt-md-3 pt-md-3">Full Stack Web Developer</h2>
-                <p id="text-title3" class="typewriter mt-4">
-                    Creative and results-driven full-stack developer who enjoys collaborating to bring ideas to life. 
-                    I believe in writing clean, maintainable code and creating positive user experiences. Excited to 
-                    contribute to projects that make a difference.
-                </p>
-                <p id="text-title3" class="typewriter typewriter2 mt-4">
-                    Passionate in building user-friendly and efficient applications, always eager to learn new 
-                    technologies and contribute to innovative projects.
-                </p>
-            </div>
-
-        </div>
-    </div>
-
-
-<!-- Projects Start -->
-
-    <div class="container-fluid">
-        <h2 class="tools section-title justify-content-center py-md-3 my-md-4 text-center "><span class="title-text">Projects 🖥️</span></h2>
-    </div>
-
-<div id="projects" class="container-fluid row justify-content-center bg-light p-4">
-
-
-    <div class="row">
-    <div class="col-12 col-md-4">
-        <div class="card shadow-lg animate-card h-100 d-flex flex-column">
-            <div class="img-container">
-                <img src="images/project-1.jpg" alt="E-Commerce API" class="card-img-top">
-            </div>
-            <div class="card-body d-flex flex-column flex-grow-1">
-                <h5 class="card-title">E-Commerce API Website</h5>
-                <p class="card-text flex-grow-1">
-                    A <strong>feature-rich online shopping platform</strong> with secure payments, user authentication, and product management. 
-                    Built with Node.js, Express, MongoDB, and React ensuring a seamless experience.  
-                </p>
-                <a href="http://zuitt-bootcamp-prod-529-8539-degracia.s3-website.us-east-1.amazonaws.com/" class="btn btn-primary mt-auto">View Project</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-12 col-md-4">
-        <div class="card shadow-lg animate-card h-100 d-flex flex-column">
-            <div class="img-container">
-                <img src="images/project-2.jpg" alt="Gunpla Store" class="card-img-top">
-            </div>
-            <div class="card-body d-flex flex-column flex-grow-1">
-                <h5 class="card-title">Gunpla E-Commerce Store</h5>
-                <p class="card-text flex-grow-1">
-                    A sleek and modern <strong>Gunpla store</strong> with Bootstrap-based UI, product catalog, and an "Add to Cart" feature.  
-                    Optimized as a good example of a shopping layout.
-                </p>
-                <a href="https://jpdegracia.github.io/home-page-exam/" class="btn btn-primary mt-auto">View Project</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-12 col-md-4">
-        <div class="card shadow-lg animate-card h-100 d-flex flex-column">
-            <div class="img-container">
-                <img src="images/project-3.jpg" alt="Education E-Commerce" class="card-img-top">
-            </div>
-            <div class="card-body d-flex flex-column flex-grow-1">
-                <h5 class="card-title">E-Learning E-Commerce Platform</h5>
-                <p class="card-text flex-grow-1">
-                    Unlock your potential with expert-led online courses. Our platform offers interactive content, smooth navigation, and secure payments for students & professionals alike.
-                </p>
-                <a href="https://jpdegracia.github.io/home-page-exam-2/" class="btn btn-primary mt-auto">View Project</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<!-- Other Projects End -->
-
-<!-- Tools Start -->
-
-
-  <div class="container-fluid">
-    <div id="web" class="row">
-        <h2 class="tools row justify-content-center py-md-3 my-md-2 gap-4 text-center"><span class="title-text">TOOLS 🛠</span></h2>
-        <div class="col-12 col-md-4 card justify-content-center text-center bg-success">
-          <h5>Front-End</h5>
-            <div id="logo1">
-                  <img width="215" src="images/logo-css3.png"/>
-                  <img width="215" src="images/logo-html5.png"/>
-                  <img width="240" src="images/bootstrap-card.png"/>
-                  <img width="240" src="images/html-card.png"/>
-
-            </div>
-        </div>
-        <div class="col-12 col-md-4 card justify-content-center text-center bg-success">
-          <h5>Back-End & Full-Stack</h5>
-                    <div id="logo2">
-                        <img width="180" src="images/logo-expressjs.png"/>
-                        <img width="180" src="images/logo-mongodb.png"/>
-                        <img width="180" src="images/logo-nodejs.png"/>
-                        <img width="180" src="images/logo-react.png"/>
+            <div class="row g-5 justify-content-center">
+                
+                <div class="col-md-6 col-lg-4 pop-item">
+                    <div class="bg-[#111a2e] border border-white/5 rounded-[2rem] overflow-hidden group hover:border-cyan-400/50 transition-all duration-500 h-100 flex flex-col">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="images/project-1.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="E-Commerce API">
+                            <div class="absolute top-4 right-4 bg-cloudflare text-white text-[10px] px-3 py-1 rounded-full font-bold">SECURED_PROXY</div>
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h4 class="text-white font-syne font-bold mb-3 uppercase">Secured E-Commerce API</h4>
+                            <p class="text-slate-400 text-sm mb-6 leading-relaxed font-mono flex-grow">Dockerized commerce engine deployed on AWS EC2. Origin IP is masked behind Cloudflare to mitigate DDoS attacks.</p>
+                            <a href="#" class="text-cyan-400 font-bold text-xs tracking-widest hover:text-white transition-colors font-mono mt-auto">VIEW_CASE_STUDY -></a>
+                        </div>
                     </div>
-        </div>
-        <div class="col-12 col-md-4 card justify-content-center text-center bg-success">
-          <h5>Others</h5>
-            <div id="logo3">
-                        <img width="180" src="images/logo-git.png"/>
-                        <img width="180" src="images/logo-sublime-text-3.png"/>
-                        <img width="180" src="images/logo-gitlab-ci-cd.png"/>
+                </div>
+
+                <div class="col-md-6 col-lg-4 pop-item">
+                    <div class="bg-[#111a2e] border border-white/5 rounded-[2rem] overflow-hidden group hover:border-cyan-400/50 transition-all duration-500 h-100 flex flex-col">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="images/project-2.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Gunpla Store">
+                            <div class="absolute top-4 right-4 bg-[#61dafb] text-slate-900 text-[10px] px-3 py-1 rounded-full font-bold">REACT_UI</div>
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h4 class="text-white font-syne font-bold mb-3 uppercase">Gunpla E-Commerce Store</h4>
+                            <p class="text-slate-400 text-sm mb-6 leading-relaxed font-mono flex-grow">A sleek and modern Gunpla store with Bootstrap-based UI, product catalog, and an interactive "Add to Cart" feature.</p>
+                            <a href="https://jpdegracia.github.io/home-page-exam/" target="_blank" class="text-cyan-400 font-bold text-xs tracking-widest hover:text-white transition-colors font-mono mt-auto">VIEW_PROJECT -></a>
+                        </div>
                     </div>
-        </div>
+                </div>
 
-    </div>
+                <div class="col-md-6 col-lg-4 pop-item">
+                    <div class="bg-[#111a2e] border border-white/5 rounded-[2rem] overflow-hidden group hover:border-cyan-400/50 transition-all duration-500 h-100 flex flex-col">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="images/project-3.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Education E-Commerce">
+                            <div class="absolute top-4 right-4 bg-[#339933] text-white text-[10px] px-3 py-1 rounded-full font-bold">FULL_STACK</div>
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h4 class="text-white font-syne font-bold mb-3 uppercase">E-Learning Platform</h4>
+                            <p class="text-slate-400 text-sm mb-6 leading-relaxed font-mono flex-grow">Unlock your potential with expert-led online courses. Features interactive content, smooth navigation, and secure payments.</p>
+                            <a href="https://jpdegracia.github.io/home-page-exam-2/" target="_blank" class="text-cyan-400 font-bold text-xs tracking-widest hover:text-white transition-colors font-mono mt-auto">VIEW_PROJECT -></a>
+                        </div>
+                    </div>
+                </div>
 
-<!-- Tools End -->
-
-<section id="contact" class="container py-5">
-    <div class="row justify-content-center align-items-center g-5">
-        
-        <!-- Visit Us Section -->
-        <div class="col-md-6 text-center order-md-1 order-2">
-            <h3 class="text-dark mb-3">Visit Us:</h3>
-            <div class="rounded shadow overflow-hidden">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125641.23069195346!2d123.64408032182074!3d10.23830317326538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a9784dc23f97a3%3A0x6e1d801f07e82f31!2sCity%20of%20Naga%2C%20Cebu!5e0!3m2!1sen!2sph!4v1737884795343!5m2!1sen!2sph" 
-                    width="100%" height="350" style="border:0;" 
-                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
             </div>
         </div>
+    </section>
 
-        <!-- Message Us Section -->
-        <div class="col-md-6 order-md-2 order-1">
-            <h3 class="text-center mb-3">Message Us:</h3>
-            <div class="text-center mb-4">
-                <a href="http://facebook.com" target="_blank"><i class="fab fa-facebook fa-2x mx-2 text-dark"></i></a>
-                <a href="http://linkedin.com" target="_blank"><i class="fab fa-linkedin fa-2x mx-2 text-dark"></i></a>
-                <a href="http://github.com" target="_blank"><i class="fab fa-github fa-2x mx-2 text-dark"></i></a>
-                <a href="http://gitlab.com" target="_blank"><i class="fab fa-gitlab fa-2x mx-2 text-dark"></i></a>
+    <section id="tools" class="py-32 section section-reveal bg-[#0f172a]">
+        <div class="container mx-auto px-6">
+            <h2 class="text-center font-black text-4xl mb-24 font-syne uppercase text-white tracking-tighter italic">Technical_Arsenal</h2>
+            
+            <div class="tech-row mb-12 border border-white/5 bg-[#111a2e] rounded-[2.5rem] p-12">
+                <p class="text-center text-cyan-500/40 font-bold text-[11px] tracking-[0.5em] mb-12 uppercase font-mono">Frontend Architecture</p>
+                <div class="flex flex-wrap justify-center gap-10 md:gap-20">
+                    <div class="tech-item pop-item"><i class="fab fa-html5"></i><span class="tech-label">HTML5</span></div>
+                    <div class="tech-item pop-item"><i class="fab fa-css3-alt"></i><span class="tech-label">CSS3</span></div>
+                    <div class="tech-item pop-item"><i class="fab fa-react"></i><span class="tech-label">React</span></div>
+                    <div class="tech-item pop-item">
+                        <svg class="w-12 h-12 icon-svg tailwind-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8 0.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg>
+                        <span class="tech-label">Tailwind</span>
+                    </div>
+                    <div class="tech-item pop-item"><i class="fab fa-bootstrap"></i><span class="tech-label">Bootstrap</span></div>
+                    <div class="tech-item pop-item"><i class="fab fa-figma"></i><span class="tech-label">Figma</span></div>
+                </div>
             </div>
-            <form class="p-4 bg-light rounded shadow">
-                <div class="mb-3">
-                    <label for="fullName" class="form-label">Full Name</label>
-                    <input type="text" class="form-control" id="fullName" placeholder="Enter your full name">
+
+            <div class="tech-row mb-12 border border-white/5 bg-[#111a2e] rounded-[2.5rem] p-12">
+                <p class="text-center text-cyan-500/40 font-bold text-[11px] tracking-[0.5em] mb-12 uppercase font-mono">Backend Systems</p>
+                <div class="flex flex-wrap justify-center gap-10 md:gap-20">
+                    <div class="tech-item pop-item"><i class="fab fa-node"></i><span class="tech-label">Node.js</span></div>
+                    <div class="tech-item pop-item"><i class="fab fa-node-js"></i><span 
+                    class="tech-label">Express</span></div>
+                    <div class="tech-item pop-item"><i class="fab fa-php"></i><span class="tech-label">PHP</span></div>
+                    <div class="tech-item pop-item"><i class="fab fa-python"></i><span class="tech-label">Python</span></div>
+                    <div class="tech-item pop-item"><i class="fas fa-database"></i><span class="tech-label">MySQL</span></div>
+                    <div class="tech-item pop-item"><i class="fas fa-leaf"></i><span class="tech-label">MongoDB</span></div>
                 </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email address">
+            </div>
+
+            <div class="tech-row reveal border border-white/5 bg-[#111a2e] rounded-[2.5rem] p-12">
+                <p class="text-center text-cyan-500/40 font-bold text-[11px] tracking-[0.5em] mb-12 uppercase font-mono">Cloud & Infrastructure</p>
+                <div class="flex flex-wrap justify-center gap-10 md:gap-15">
+                    <div class="tech-item pop-item"><i class="fab fa-aws"></i><span class="tech-label">EC2</span></div>
+                    <div class="tech-item pop-item"><i class="fas fa-box"></i><span class="tech-label">AWS S3</span></div>
+                    <div class="tech-item pop-item"><i class="fab fa-cloudflare"></i><span class="tech-label">Cloudflare</span></div>
+                    <div class="tech-item pop-item"><i class="fab fa-docker"></i><span class="tech-label">Docker</span></div>
+                    <div class="tech-item pop-item"><i class="fab fa-git-alt"></i><span class="tech-label">Git</span></div>
+                    <div class="tech-item pop-item">
+                        <svg class="w-12 h-12 icon-svg vercel-svg" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 22.525H0l12-21.05 12 21.05z"/>
+                        </svg>
+                        <span class="tech-label">Vercel</span>
+                    </div>
+                    <div class="tech-item pop-item"><i class="fas fa-server"></i><span class="tech-label">Render</span></div>
                 </div>
-                <div class="mb-3">
-                    <label for="message" class="form-label">Message</label>
-                    <textarea class="form-control" id="message" rows="4" placeholder="Enter your message"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Submit</button>
-            </form>
+            </div>
         </div>
-        
-    </div>
-</section>
+    </section>
 
+    <section id="contact" class="py-24 bg-[#0f172a] section">
+        <div class="container mx-auto px-6 reveal">
+            <h2 class="text-center font-black text-4xl mb-16 font-syne text-white uppercase italic tracking-tighter">Connect_With_Me</h2>
+            <div class="row g-5 align-items-start">
+                <div class="col-md-6">
+                    <div class="bg-[#111a2e] p-8 rounded-[2rem] border border-white/5 shadow-xl">
+                        <form>
+                            <div class="mb-4">
+                                <label class="block text-xs font-bold text-cyan-400 mb-2 uppercase tracking-widest font-mono">Name</label>
+                                <input type="text" class="w-full bg-[#0b1120] border border-slate-800 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-cyan-400 transition-colors font-mono" placeholder="Enter your name">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-xs font-bold text-cyan-400 mb-2 uppercase tracking-widest font-mono">Email</label>
+                                <input type="email" class="w-full bg-[#0b1120] border border-slate-800 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-cyan-400 transition-colors font-mono" placeholder="Enter your email">
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-xs font-bold text-cyan-400 mb-2 uppercase tracking-widest font-mono">Message</label>
+                                <textarea rows="4" class="w-full bg-[#0b1120] border border-slate-800 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-cyan-400 transition-colors font-mono" placeholder="How can I help?"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-cyan-400 text-slate-900 font-bold py-3 uppercase text-[14px] tracking-widest hover:bg-white transition-all shadow-lg shadow-cyan-500/10">send_message()</button>
+                        </form>
+                    </div>
+                </div>
 
-        <!-- Footer: Start -->
-    <footer class="bg-dark text-light text-center py-3">
-      <div id="footer" class="container">
-        <p class="mb-0">Kiddo&copy;  2025 | All rights reserved.</p>
-      </div>
+                <div class="col-md-6 text-center text-md-start">
+                    <div class="mb-10">
+                        <h4 class="font-syne text-white text-xl mb-4 uppercase">Direct_Inquiries</h4>
+                        <p class="text-slate-400 mb-2 font-mono">Liloan, Central Visayas, Philippines</p>
+                        <p class="text-cyan-400 font-bold font-mono">contact@jenskid.dev</p>
+                    </div>
+                    <div>
+                        <h4 class="font-syne text-white text-xl mb-4 uppercase">External_Nodes</h4>
+                        <div class="flex justify-center md:justify-start gap-6">
+                            <a href="https://github.com/jpdegracia" class="social-icon text-slate-500 hover:text-white transition-all transform hover:-translate-y-1"><i class="fab fa-github fa-2x"></i></a>
+                            <a href="www.linkedin.com/in/jenskid-de-gracia-929348206" class="social-icon text-slate-500 hover:text-cyan-400 transition-all transform hover:-translate-y-1"><i class="fab fa-linkedin fa-2x"></i></a>
+                            <a href="https://www.facebook.com/diksnej" class="social-icon text-slate-500 hover:text-blue-500 transition-all transform hover:-translate-y-1"><i class="fab fa-facebook fa-2x"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 border-t border-white/5 text-center">
+        <p class="text-slate-600 text-[14px] tracking-[0.4em] font-bold uppercase font-mono">
+            JENSKID P. DE GRACIA &copy; 2026 | Philippines
+        </p>
     </footer>
-    <!-- Footer: End -->
- 
-  
-  <!-- bootstrap script -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <!-- ICON -->
-  <script src="https://kit.fontawesome.com/047cfea66d.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Reveal on Scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        // Navbar Active Link Logic
+        const navLinks = document.querySelectorAll('.nav-item-link');
+        const underline = document.getElementById('nav-underline');
+        const sections = document.querySelectorAll('.section');
+
+        function updateUnderline(element) {
+            if(!element) return;
+            underline.style.width = `${element.offsetWidth}px`;
+            underline.style.left = `${element.offsetLeft}px`;
+        }
+
+        window.addEventListener('scroll', () => {
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-cyan-400');
+                link.classList.add('text-slate-400');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('text-cyan-400');
+                    link.classList.remove('text-slate-400');
+                    updateUnderline(link);
+                }
+            });
+        });
+
+        // Initialize Underline
+        window.onload = () => updateUnderline(document.querySelector('.nav-item-link'));
+    </script>
 </body>
 </html>
