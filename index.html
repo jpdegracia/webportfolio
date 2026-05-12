@@ -16,6 +16,8 @@
 
     <link rel="stylesheet" href="index.css">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Intersection Observer for Section Animation
@@ -59,7 +61,8 @@
             const sections = document.querySelectorAll('section, header');
 
             function updateUnderline(element) {
-                if(!element || !underline) return;
+                // Skip if mobile query is active and line is hidden
+                if(!element || !underline || window.innerWidth <= 768) return;
                 underline.style.width = `${element.offsetWidth}px`;
                 underline.style.left = `${element.offsetLeft}px`;
             }
@@ -84,6 +87,11 @@
                 });
             });
 
+            window.addEventListener('resize', () => {
+                const activeLink = document.querySelector('.nav-item-link.text-cyan-400');
+                if(activeLink) updateUnderline(activeLink);
+            });
+
             window.onload = () => updateUnderline(document.querySelector('.nav-item-link'));
         });
     </script>
@@ -106,11 +114,11 @@
 
     <nav id="navbar" class="navbar navbar-expand fixed-top px-4 h-20 transition-all duration-300">
         <div class="container justify-content-center">
-            <div class="navbar-nav flex items-center gap-6 md:gap-12 relative">
-                <a class="nav-link nav-item-link text-[14px] tracking-[0.2em] font-bold uppercase" href="#about">home</a>
-                <a class="nav-link nav-item-link text-[14px] tracking-[0.2em] font-bold uppercase" href="#projects">projects</a>
-                <a class="nav-link nav-item-link text-[14px] tracking-[0.2em] font-bold uppercase" href="#tools">stack</a>
-                <a class="nav-link nav-item-link text-[14px] tracking-[0.2em] font-bold uppercase" href="#contact">contact</a>
+            <div class="navbar-nav flex items-center gap-4 md:gap-12 relative max-w-3xl mx-auto">
+                <a class="nav-link nav-item-link text-[12px] md:text-[14px] tracking-[0.1em] md:tracking-[0.2em] font-bold uppercase" href="#about">home</a>
+                <a class="nav-link nav-item-link text-[12px] md:text-[14px] tracking-[0.1em] md:tracking-[0.2em] font-bold uppercase" href="#projects">projects</a>
+                <a class="nav-link nav-item-link text-[12px] md:text-[14px] tracking-[0.1em] md:tracking-[0.2em] font-bold uppercase" href="#tools">stack</a>
+                <a class="nav-link nav-item-link text-[12px] md:text-[14px] tracking-[0.1em] md:tracking-[0.2em] font-bold uppercase" href="#contact">contact</a>
                 <div id="nav-underline"></div>
             </div>
         </div>
@@ -118,51 +126,51 @@
 
     <header id="about" class="min-h-screen flex items-center pt-20 section">
         <div class="container mx-auto px-6">
-            <div class="row align-items-center">
-                <div class="col-lg-7 reveal">
+            <div class="row align-items-center flex-column-reverse flex-lg-row">
+                <div class="col-lg-7 reveal text-center lg:text-left flex flex-col items-center lg:items-start mt-8 lg:mt-0">
                     <h6 class="text-cyan-400 font-bold tracking-[0.4em] mb-4 text-[14px] uppercase">system.init()</h6>
-                    <h1 class="text-5xl md:text-6xl font-black leading-[0.9] mb-6 font-syne text-white uppercase">
+                    <h1 class="text-4xl md:text-6xl font-black leading-[1.1] md:leading-[0.9] mb-6 font-syne text-white uppercase">
                         JENSKID <br>
                         <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">DE GRACIA</span>
                     </h1>
-                    <div id="text-title2" class="mb-8 font-mono">// Full_Stack_Developer_</div>
+                    <div id="text-title2" class="mb-8 font-mono mx-auto lg:mx-0">// Full_Stack_Developer_</div>
                     
-                    <p class="text-slate-400 text-base md:text-lg max-w-xl mb-10 leading-relaxed font-mono">
+                    <p class="text-slate-400 text-base md:text-lg max-w-lg mb-10 leading-relaxed font-mono text-center lg:text-left">
                         I architect high-performance backends with <span class="text-white font-semibold">Node.js/Express</span>, 
                         secured via <span class="text-cloudflare font-semibold">Cloudflare Proxy</span> and scaled on 
                         <span class="text-aws font-semibold">AWS Infrastructure</span>.
                     </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#projects" class="bg-cyan-400 text-slate-900 px-10 py-3 font-bold uppercase text-[14px] tracking-widest hover:bg-white transition-all transform hover:-translate-y-1 shadow-lg shadow-cyan-500/20">View Work</a>
-                        <a href="#contact" class="border border-slate-700 text-white px-10 py-3 font-bold uppercase text-[14px] tracking-widest hover:bg-slate-800 transition-all">Connect</a>
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4 w-full">
+                        <a href="#projects" class="bg-cyan-400 text-slate-900 px-8 md:px-10 py-3 font-bold uppercase text-[12px] md:text-[14px] tracking-widest hover:bg-white transition-all transform hover:-translate-y-1 shadow-lg shadow-cyan-500/20">View Work</a>
+                        <a href="#contact" class="border border-slate-700 text-white px-8 md:px-10 py-3 font-bold uppercase text-[12px] md:text-[14px] tracking-widest hover:bg-slate-800 transition-all">Connect</a>
                     </div>
                 </div>
                 <div class="col-lg-5 text-center reveal delay-1 mt-12 lg:mt-0">
                     <div class="relative inline-block group">
                         <div class="absolute -inset-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-                        <img src="./images/kid.jpg" class="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-2 border-white/10 hover:grayscale-0 transition-all duration-700 shadow-2xl" alt="Profile">
+                        <img src="./images/kid.jpg" id="hero-img" class="relative w-48 h-48 md:w-80 md:h-80 object-cover rounded-full border-2 border-white/10 hover:grayscale-0 transition-all duration-700 shadow-2xl" alt="Profile">
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <section id="projects" class="py-32 bg-[#0a101f] section overflow-hidden">
-        <div class="container mx-auto px-6">
-            <h2 class="text-center font-black text-4xl mb-20 font-syne uppercase text-white italic tracking-tighter">Featured_Projects</h2>
+    <section id="projects" class="py-24 md:py-40 bg-[#0a101f] section overflow-hidden">
+        <div class="container mx-auto px-6 lg:px-12 xl:px-24">
+            <h2 class="text-center font-black text-3xl md:text-4xl mb-16 md:mb-20 font-syne uppercase text-white italic tracking-tighter">Featured_Projects</h2>
             
             <div class="row g-5 justify-content-center">
                 
                 <div class="col-md-6 col-lg-4 pop-item">
                     <div class="bg-[#111a2e] border border-white/5 rounded-[2rem] overflow-hidden group hover:border-cyan-400/50 transition-all duration-500 h-100 flex flex-col">
                         <div class="relative overflow-hidden h-64">
-                            <img src="images/project-1.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="E-Commerce API">
-                            <div class="absolute top-4 right-4 bg-cloudflare text-white text-[10px] px-3 py-1 rounded-full font-bold">SECURED_PROXY</div>
+                            <img src="images/project-1.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="E-Learning Platform">
+                            <div class="absolute top-4 right-4 bg-cloudflare text-white text-[10px] px-3 py-1 rounded-full font-bold">FULL STACK/SECURED_PROXY</div>
                         </div>
                         <div class="p-8 flex flex-col flex-grow">
-                            <h4 class="text-white font-syne font-bold mb-3 uppercase">Secured E-Commerce API</h4>
-                            <p class="text-slate-400 text-sm mb-6 leading-relaxed font-mono flex-grow">Dockerized commerce engine deployed on AWS EC2. Origin IP is masked behind Cloudflare to mitigate DDoS attacks.</p>
-                            <a href="#" class="text-cyan-400 font-bold text-xs tracking-widest hover:text-white transition-colors font-mono mt-auto">VIEW_CASE_STUDY -></a>
+                            <h4 class="text-white font-syne font-bold mb-3 uppercase">E-Learning Platform</h4>
+                            <p class="text-slate-400 text-sm mb-6 leading-relaxed font-mono flex-grow">A custom-built, Dockerized e-learning platform with an integrated commerce engine, deployed on AWS EC2 and AWS S3. The platform’s origin IP is protected behind Cloudflare to enhance security and mitigate DDoS attacks.</p>
+                            <a href="https://test.thecareerlab.ph" class="text-cyan-400 font-bold text-xs tracking-widest hover:text-white transition-colors font-mono mt-auto">VIEW_E_LEARNING -></a>
                         </div>
                     </div>
                 </div>
@@ -176,21 +184,7 @@
                         <div class="p-8 flex flex-col flex-grow">
                             <h4 class="text-white font-syne font-bold mb-3 uppercase">Gunpla E-Commerce Store</h4>
                             <p class="text-slate-400 text-sm mb-6 leading-relaxed font-mono flex-grow">A sleek and modern Gunpla store with Bootstrap-based UI, product catalog, and an interactive "Add to Cart" feature.</p>
-                            <a href="https://jpdegracia.github.io/home-page-exam/" target="_blank" class="text-cyan-400 font-bold text-xs tracking-widest hover:text-white transition-colors font-mono mt-auto">VIEW_PROJECT -></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4 pop-item">
-                    <div class="bg-[#111a2e] border border-white/5 rounded-[2rem] overflow-hidden group hover:border-cyan-400/50 transition-all duration-500 h-100 flex flex-col">
-                        <div class="relative overflow-hidden h-64">
-                            <img src="images/project-3.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Education E-Commerce">
-                            <div class="absolute top-4 right-4 bg-[#339933] text-white text-[10px] px-3 py-1 rounded-full font-bold">FULL_STACK</div>
-                        </div>
-                        <div class="p-8 flex flex-col flex-grow">
-                            <h4 class="text-white font-syne font-bold mb-3 uppercase">E-Learning Platform</h4>
-                            <p class="text-slate-400 text-sm mb-6 leading-relaxed font-mono flex-grow">Unlock your potential with expert-led online courses. Features interactive content, smooth navigation, and secure payments.</p>
-                            <a href="https://jpdegracia.github.io/home-page-exam-2/" target="_blank" class="text-cyan-400 font-bold text-xs tracking-widest hover:text-white transition-colors font-mono mt-auto">VIEW_PROJECT -></a>
+                            <a href="https://jpdegracia.github.io/home-page-exam/" class="text-cyan-400 font-bold text-xs tracking-widest hover:text-white transition-colors font-mono mt-auto">VIEW_E_COMMERCE_STORE -></a>
                         </div>
                     </div>
                 </div>
@@ -199,18 +193,19 @@
         </div>
     </section>
 
-    <section id="tools" class="py-32 section section-reveal bg-[#0f172a]">
+    <section id="tools" class="py-24 md:py-40 section section-reveal bg-[#0f172a]">
         <div class="container mx-auto px-6">
-            <h2 class="text-center font-black text-4xl mb-24 font-syne uppercase text-white tracking-tighter italic">Technical_Arsenal</h2>
+            <h2 class="text-center font-black text-3xl md:text-4xl mb-16 md:mb-24 font-syne uppercase text-white tracking-tighter italic">Technical_Arsenal</h2>
             
-            <div class="tech-row mb-12 border border-white/5 bg-[#111a2e] rounded-[2.5rem] p-12">
-                <p class="text-center text-cyan-500/40 font-bold text-[11px] tracking-[0.5em] mb-12 uppercase font-mono">Frontend Architecture</p>
-                <div class="flex flex-wrap justify-center gap-10 md:gap-20">
+            <!-- Tech Row 1 -->
+            <div class="tech-row mb-12 border border-white/5 bg-[#111a2e] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 max-w-5xl mx-auto">
+                <p class="text-center text-cyan-500/40 font-bold text-[11px] tracking-[0.5em] mb-10 md:mb-12 uppercase font-mono">Frontend Architecture</p>
+                <div class="flex flex-wrap justify-center gap-8 md:gap-20">
                     <div class="tech-item pop-item"><i class="fab fa-html5"></i><span class="tech-label">HTML5</span></div>
                     <div class="tech-item pop-item"><i class="fab fa-css3-alt"></i><span class="tech-label">CSS3</span></div>
                     <div class="tech-item pop-item"><i class="fab fa-react"></i><span class="tech-label">React</span></div>
                     <div class="tech-item pop-item">
-                        <svg class="w-12 h-12 icon-svg tailwind-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8 0.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg>
+                        <svg class="w-10 h-10 md:w-12 md:h-12 icon-svg tailwind-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8 0.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg>
                         <span class="tech-label">Tailwind</span>
                     </div>
                     <div class="tech-item pop-item"><i class="fab fa-bootstrap"></i><span class="tech-label">Bootstrap</span></div>
@@ -218,12 +213,12 @@
                 </div>
             </div>
 
-            <div class="tech-row mb-12 border border-white/5 bg-[#111a2e] rounded-[2.5rem] p-12">
-                <p class="text-center text-cyan-500/40 font-bold text-[11px] tracking-[0.5em] mb-12 uppercase font-mono">Backend Systems</p>
-                <div class="flex flex-wrap justify-center gap-10 md:gap-20">
+            <!-- Tech Row 2 -->
+            <div class="tech-row mb-12 border border-white/5 bg-[#111a2e] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 max-w-5xl mx-auto">
+                <p class="text-center text-cyan-500/40 font-bold text-[11px] tracking-[0.5em] mb-10 md:mb-12 uppercase font-mono">Backend Systems</p>
+                <div class="flex flex-wrap justify-center gap-8 md:gap-20">
                     <div class="tech-item pop-item"><i class="fab fa-node"></i><span class="tech-label">Node.js</span></div>
-                    <div class="tech-item pop-item"><i class="fab fa-node-js"></i><span 
-                    class="tech-label">Express</span></div>
+                    <div class="tech-item pop-item"><i class="fab fa-node-js"></i><span class="tech-label">Express</span></div>
                     <div class="tech-item pop-item"><i class="fab fa-php"></i><span class="tech-label">PHP</span></div>
                     <div class="tech-item pop-item"><i class="fab fa-python"></i><span class="tech-label">Python</span></div>
                     <div class="tech-item pop-item"><i class="fas fa-database"></i><span class="tech-label">MySQL</span></div>
@@ -231,16 +226,17 @@
                 </div>
             </div>
 
-            <div class="tech-row reveal border border-white/5 bg-[#111a2e] rounded-[2.5rem] p-12">
-                <p class="text-center text-cyan-500/40 font-bold text-[11px] tracking-[0.5em] mb-12 uppercase font-mono">Cloud & Infrastructure</p>
-                <div class="flex flex-wrap justify-center gap-10 md:gap-15">
+            <!-- Tech Row 3 -->
+            <div class="tech-row reveal border border-white/5 bg-[#111a2e] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 max-w-5xl mx-auto">
+                <p class="text-center text-cyan-500/40 font-bold text-[11px] tracking-[0.5em] mb-10 md:mb-12 uppercase font-mono">Cloud & Infrastructure</p>
+                <div class="flex flex-wrap justify-center gap-8 md:gap-15">
                     <div class="tech-item pop-item"><i class="fab fa-aws"></i><span class="tech-label">EC2</span></div>
                     <div class="tech-item pop-item"><i class="fas fa-box"></i><span class="tech-label">AWS S3</span></div>
                     <div class="tech-item pop-item"><i class="fab fa-cloudflare"></i><span class="tech-label">Cloudflare</span></div>
                     <div class="tech-item pop-item"><i class="fab fa-docker"></i><span class="tech-label">Docker</span></div>
                     <div class="tech-item pop-item"><i class="fab fa-git-alt"></i><span class="tech-label">Git</span></div>
                     <div class="tech-item pop-item">
-                        <svg class="w-12 h-12 icon-svg vercel-svg" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-10 h-10 md:w-12 md:h-12 icon-svg vercel-svg" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path d="M24 22.525H0l12-21.05 12 21.05z"/>
                         </svg>
                         <span class="tech-label">Vercel</span>
@@ -251,12 +247,12 @@
         </div>
     </section>
 
-    <section id="contact" class="py-24 bg-[#0f172a] section">
+    <section id="contact" class="py-24 md:py-32 bg-[#0f172a] section">
         <div class="container mx-auto px-6 reveal">
-            <h2 class="text-center font-black text-4xl mb-16 font-syne text-white uppercase italic tracking-tighter">Connect_With_Me</h2>
+            <h2 class="text-center font-black text-3xl md:text-4xl mb-16 font-syne text-white uppercase italic tracking-tighter">Connect_With_Me</h2>
             <div class="row g-5 align-items-start">
                 <div class="col-md-6">
-                    <div class="bg-[#111a2e] p-8 rounded-[2rem] border border-white/5 shadow-xl">
+                    <div class="bg-[#111a2e] p-6 md:p-8 rounded-[2rem] border border-white/5 shadow-xl">
                         <form>
                             <div class="mb-4">
                                 <label class="block text-xs font-bold text-cyan-400 mb-2 uppercase tracking-widest font-mono">Name</label>
@@ -275,14 +271,14 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 text-center text-md-start">
+                <div class="col-md-6 text-center text-md-start mt-12 md:mt-0">
                     <div class="mb-10">
-                        <h4 class="font-syne text-white text-xl mb-4 uppercase">Direct_Inquiries</h4>
-                        <p class="text-slate-400 mb-2 font-mono">Liloan, Central Visayas, Philippines</p>
+                        <h4 class="font-syne text-white text-xl md:text-2xl mb-4 uppercase">Direct_Inquiries</h4>
+                        <p class="text-slate-400 mb-2 font-mono text-sm md:text-base">Liloan, Central Visayas, Philippines</p>
                         <p class="text-cyan-400 font-bold font-mono">contact@jenskid.dev</p>
                     </div>
                     <div>
-                        <h4 class="font-syne text-white text-xl mb-4 uppercase">External_Nodes</h4>
+                        <h4 class="font-syne text-white text-xl md:text-2xl mb-4 uppercase">External_Nodes</h4>
                         <div class="flex justify-center md:justify-start gap-6">
                             <a href="https://github.com/jpdegracia" class="social-icon text-slate-500 hover:text-white transition-all transform hover:-translate-y-1"><i class="fab fa-github fa-2x"></i></a>
                             <a href="www.linkedin.com/in/jenskid-de-gracia-929348206" class="social-icon text-slate-500 hover:text-cyan-400 transition-all transform hover:-translate-y-1"><i class="fab fa-linkedin fa-2x"></i></a>
@@ -294,8 +290,8 @@
         </div>
     </section>
 
-    <footer class="py-16 border-t border-white/5 text-center">
-        <p class="text-slate-600 text-[14px] tracking-[0.4em] font-bold uppercase font-mono">
+    <footer class="py-12 md:py-16 border-t border-white/5 text-center">
+        <p class="text-slate-600 text-[12px] md:text-[14px] tracking-[0.2em] md:tracking-[0.4em] font-bold uppercase font-mono px-4">
             JENSKID P. DE GRACIA &copy; 2026 | Philippines
         </p>
     </footer>
@@ -309,41 +305,6 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-
-        // Navbar Active Link Logic
-        const navLinks = document.querySelectorAll('.nav-item-link');
-        const underline = document.getElementById('nav-underline');
-        const sections = document.querySelectorAll('.section');
-
-        function updateUnderline(element) {
-            if(!element) return;
-            underline.style.width = `${element.offsetWidth}px`;
-            underline.style.left = `${element.offsetLeft}px`;
-        }
-
-        window.addEventListener('scroll', () => {
-            let current = "";
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('text-cyan-400');
-                link.classList.add('text-slate-400');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('text-cyan-400');
-                    link.classList.remove('text-slate-400');
-                    updateUnderline(link);
-                }
-            });
-        });
-
-        // Initialize Underline
-        window.onload = () => updateUnderline(document.querySelector('.nav-item-link'));
     </script>
 </body>
 </html>
