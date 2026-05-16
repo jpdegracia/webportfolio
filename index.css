@@ -132,6 +132,7 @@ section, header {
 .tech-item:hover .tailwind-svg { color: #38bdf8; }
 .tech-item:hover .fa-bootstrap { color: #7952b3; }
 .tech-item:hover .fa-figma { color: #f24e1e; }
+.tech-item:hover .devicon-nextjs-plain { color: #eee8e8; }
 
 /* Backend Row */
 .tech-item:hover .fa-node-js { color: #339933; }
@@ -140,6 +141,10 @@ section, header {
 .tech-item:hover .fa-python { color: #3776ab; }
 .tech-item:hover .fa-database { color: #4479a1; }
 .tech-item:hover .fa-leaf { color: #4db33d; } 
+.tech-item:hover .devicon-postgresql-plain { color:  #666666 ; }
+.tech-item:hover .prisma-svg { color: #ecedf3; filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4)); }
+.tech-item:hover .devicon-supabase-plain { color: #34b27b; }
+
 
 /* Cloud Row */
 .tech-item:hover .fa-aws { color: #ff9900; }
@@ -149,6 +154,7 @@ section, header {
 .tech-item:hover .fa-git-alt { color: #f05032; }
 .tech-item:hover .vercel-svg { color: #ffffff; filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));}
 .tech-item:hover .fa-server { color: #46e3b7; } 
+
 
 
 /* --- MOBILE SPECIFIC FIXES (S23 / Portrait Mode) --- */

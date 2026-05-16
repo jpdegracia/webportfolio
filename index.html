@@ -13,6 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Included Devicon CDN for easy access to Next.js and PostgreSQL flat icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
     <link rel="stylesheet" href="index.css">
 
@@ -61,7 +63,6 @@
             const sections = document.querySelectorAll('section, header');
 
             function updateUnderline(element) {
-                // Skip if mobile query is active and line is hidden
                 if(!element || !underline || window.innerWidth <= 768) return;
                 underline.style.width = `${element.offsetWidth}px`;
                 underline.style.left = `${element.offsetLeft}px`;
@@ -210,19 +211,34 @@
                     </div>
                     <div class="tech-item pop-item"><i class="fab fa-bootstrap"></i><span class="tech-label">Bootstrap</span></div>
                     <div class="tech-item pop-item"><i class="fab fa-figma"></i><span class="tech-label">Figma</span></div>
+                    <!-- Fixed Next.js using Devicon -->
+                    <div class="tech-item pop-item"><i class="devicon-nextjs-plain text-4xl md:text-5xl"></i><span class="tech-label">Next.js</span></div>
                 </div>
             </div>
 
             <!-- Tech Row 2 -->
             <div class="tech-row mb-12 border border-white/5 bg-[#111a2e] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 max-w-5xl mx-auto">
                 <p class="text-center text-cyan-500/40 font-bold text-[11px] tracking-[0.5em] mb-10 md:mb-12 uppercase font-mono">Backend Systems</p>
-                <div class="flex flex-wrap justify-center gap-8 md:gap-20">
+                <div class="flex flex-wrap justify-center gap-8 md:gap-20 items-center">
                     <div class="tech-item pop-item"><i class="fab fa-node"></i><span class="tech-label">Node.js</span></div>
                     <div class="tech-item pop-item"><i class="fab fa-node-js"></i><span class="tech-label">Express</span></div>
                     <div class="tech-item pop-item"><i class="fab fa-php"></i><span class="tech-label">PHP</span></div>
                     <div class="tech-item pop-item"><i class="fab fa-python"></i><span class="tech-label">Python</span></div>
                     <div class="tech-item pop-item"><i class="fas fa-database"></i><span class="tech-label">MySQL</span></div>
                     <div class="tech-item pop-item"><i class="fas fa-leaf"></i><span class="tech-label">MongoDB</span></div>
+                    
+                    <!-- Fixed PostgreSQL using Devicon -->
+                    <div class="tech-item pop-item"><i class="devicon-postgresql-plain text-4xl md:text-5xl"></i><span class="tech-label">PostgreSQL</span></div>
+                    
+                    <div class="tech-item pop-item">
+                        <svg class="w-14 h-14 icon-svg prisma-svg text-slate-400 transition-colors duration-300" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 48 48">
+                            <path d="M44.284,36.035L27.687,1.429c-0.855-1.783-3.337-1.93-4.397-0.26L4.886,30.177    c-0.397,0.625-0.385,1.426,0.029,2.04l9.271,13.738c0.575,0.852,1.634,1.237,2.623,0.953l25.942-7.458  C44.208,39.031,44.939,37.402,44.284,36.035z M40.618,37.279L18.8,43.388c-0.505,0.142-0.98-0.305-0.87-0.818l7.735-36.097  c0.139-0.65,1.023-0.755,1.311-0.157l14.265,29.621C41.489,36.481,41.194,37.118,40.618,37.279z"></path>
+                        </svg>
+                        <span class="tech-label">Prisma</span>
+                    </div>
+
+                    <div class="tech-item pop-item"><i class="devicon-supabase-plain text-4xl md:text-5xl mb-2.5"></i><span class="tech-label">Supabase</span>
+                    </div>
                 </div>
             </div>
 
@@ -236,7 +252,7 @@
                     <div class="tech-item pop-item"><i class="fab fa-docker"></i><span class="tech-label">Docker</span></div>
                     <div class="tech-item pop-item"><i class="fab fa-git-alt"></i><span class="tech-label">Git</span></div>
                     <div class="tech-item pop-item">
-                        <svg class="w-10 h-10 md:w-12 md:h-12 icon-svg vercel-svg" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-14 h-14 icon-svg vercel-svg" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path d="M24 22.525H0l12-21.05 12 21.05z"/>
                         </svg>
                         <span class="tech-label">Vercel</span>
@@ -290,11 +306,13 @@
         </div>
     </section>
 
-    <footer class="py-12 md:py-16 border-t border-white/5 text-center">
-        <p class="text-slate-600 text-[12px] md:text-[14px] tracking-[0.2em] md:tracking-[0.4em] font-bold uppercase font-mono px-4">
-            JENSKID P. DE GRACIA &copy; 2026 | Philippines
-        </p>
-    </footer>
+    <nav>
+        <footer class="py-12 md:py-16 border-t border-white/5 text-center">
+            <p class="text-slate-600 text-[12px] md:text-[14px] tracking-[0.2em] md:tracking-[0.4em] font-bold uppercase font-mono px-4">
+                JENSKID P. DE GRACIA &copy; 2026 | Philippines
+            </p>
+        </footer>
+    </nav>
 
     <script>
         // Reveal on Scroll
