@@ -133,6 +133,7 @@ section, header {
 .tech-item:hover .fa-bootstrap { color: #7952b3; }
 .tech-item:hover .fa-figma { color: #f24e1e; }
 .tech-item:hover .devicon-nextjs-plain { color: #eee8e8; }
+.tech-item:hover .devicon-typescript-plain { color: #3178C6; }  
 
 /* Backend Row */
 .tech-item:hover .fa-node-js { color: #339933; }
